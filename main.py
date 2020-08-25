@@ -1,10 +1,25 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+import sys
+
+def window():
+    app = QApplication(sys.argv)
+    win = QMainWindow()
+    #xpos,ypos,width,height
+    win.setGeometry(500,500,300,300)
+    win.setWindowTitle("Newegg Scraper")
+    win.show()
+    sys.exit(app.exec_())
+
+window()
+
 
 cpu_url = "https://www.newegg.ca/Processors-Desktops/SubCategory/ID-343?Tid=7670"
 ssd_url = "https://www.newegg.ca/Internal-SSDs/SubCategory/ID-636?Tid=11700"
 
-uClient = uReq(ssd_url)
+uClient = uReq(cpu_url)
 page_html = uClient.read()
 uClient.close()
 
